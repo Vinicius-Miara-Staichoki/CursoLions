@@ -32,6 +32,22 @@ function mostrarMenu() {
         else if (opcao === "3") {
             buscarAlunoporID();
         }
+        else if (opcao === "4") {
+            atualizarAluno();
+        }
+
+        else if (opcao === "5") {
+            removerAluno();
+        }
+        else if (opcao === "6") {
+            alunosAprovados();
+        }
+        else if(opcao === "7"){
+            alunosReprovados();
+        }
+        else if( opcao === "0"){
+            sair();
+        }
     })
 }
 function cadastrarAluno() {
@@ -123,6 +139,7 @@ function buscarAlunoporID() {
     })
 
 }
+
 function encontrarAlunoporID(id) {
     for (i = 0; i < alunos.length; i++) {
         if (alunos[i].id === id) {
@@ -135,6 +152,136 @@ function encontrarAlunoporID(id) {
 
 
 }
+
+function atualizarAluno() {
+    console.log("Atualizar Aluno ");
+    rl.question("Digite o id do aluno: ", (id) => {
+        id = Number(id);
+        let aluno = encontrarAlunoporID(id);
+        if (aluno === null) {
+            console.log("Aluno não encontrado")
+            mostrarMenu();
+            return;
+        }
+
+        rl.question("Digite o novo nome: ", (novoNome) => {
+            rl.question("Digite a nova idade: ", (novaIdade) => {
+                rl.question("Digite a nova turma: ", (novaTurma) => {
+                    rl.question("Digite a nova nota: ", (novaNota) => {
+                        novaIdade = Number(novaIdade);
+                        novaNota = Number(novaNota);
+
+                        if (novoNome === "" || novaIdade === "" || novaTurma === "" || novaNota === "") {
+                            console.log("Todos os campos precisam ser preenchidos")
+                            mostrarMenu();
+                            return;
+
+                        }
+
+                        if (novaIdade <= 0 || novaNota < 0 || novaNota > 10) {
+                            console.log(" Idade ou nota inválida");
+                            mostrarMenu();
+                            return;
+
+                        }
+                        aluno.nome = novoNome;
+                        aluno.idade = novaIdade;
+                        aluno.turma = novaTurma;
+                        aluno.nota = novaNota;
+
+                        console.log("Aluno atualizado com sucesso");
+                        mostrarMenu();
+
+                    })
+
+                })
+
+            })
+        })
+
+    })
+
+}
+
+function removerAluno() {
+    console.log("Remover aluno")
+    rl.question("Digite o id do aluno: ", id => {
+        id = Number(id);
+        let aluno = encontrarAlunoporID(id);
+        if (aluno === null) {
+            console.log("Aluno não encontrado")
+            mostrarMenu();
+            return;
+        }
+
+        for (i = 0; i < alunos.length; i++) {
+
+            if (alunos[i].id === id) {
+
+                alunos.splice(i, 1);
+
+            }
+
+
+
+        }
+        console.log("Aluno removido: ", aluno);
+        mostrarMenu();
+        return;
+
+
+
+
+    })
+
+
+}
+function alunosAprovados() {
+    let alunosAprovados = [];
+  
+    console.log("Alunos aprovados; ");
+    if(alunos === null){
+        mostrarMenu();
+        return;
+    }
+
+    for(i=0;i<alunos.length;i++){
+        if(alunos[i].nota >= 7 ){
+            alunosAprovados.push(alunos[i]);
+        }
+    }
+    console.log(alunosAprovados);
+    mostrarMenu();
+    return;
+
+    
+}
+
+function alunosReprovados() {
+    let alunosReprovados = [];
+   
+    console.log("Alunos reprovados; ");
+    if(alunos === null){
+        mostrarMenu();
+        return;
+    }
+
+    for(i=0;i<alunos.length;i++){
+        if(alunos[i].nota < 7 ){
+            alunosReprovados.push(alunos[i]);
+        }
+    }
+    console.log(alunosReprovados);
+    mostrarMenu();
+    return;'            '
+
+    
+}
+ 
+function sair(){
+    rl.close();
+}
+
 
 mostrarMenu();
 
