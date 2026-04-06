@@ -247,13 +247,13 @@ function buscarCarroporPlaca() {
                 mostrarMenu();
                 break;
             }
-            else{
+            else {
                 console.log("Placa não cadastrada");
                 mostrarMenu();
                 return;
             }
         }
-      
+
     })
 
 }
