@@ -12,7 +12,7 @@ let carros = [];
 
 
 function mostrarMenu() {
-    console.log("\n ===============");
+    console.log("\n===============");
     console.log("Locadora Turbo Car");
     console.log("===============");
     console.log(" === Carros ===");
@@ -124,7 +124,7 @@ function cadastrarCarro() {
                         return;
                     }
 
-                    if (preco < 0 || ano < 1885) {
+                    if (carro.preco < 0 || carro.ano < 1885) {
                         console.log("Preço ou Ano inválido");
                         mostrarMenu();
                         return;
@@ -464,14 +464,14 @@ let status = "ativo";
 
 
 function realizarAluguel() {
-    
 
-    
+
+
     console.log("Realizar aluguel ");
     rl.question("Digite o id do cliente : ", (idCliente) => {
         rl.question("Digite o id do carro : ", (idCarro) => {
             rl.question("Digite o número de dias do aluguel : ", (dias) => {
-                
+
                 idCliente = Number(idCliente);
                 idCarro = Number(idCarro);
                 dias = Number(dias);
@@ -504,7 +504,7 @@ function realizarAluguel() {
 
 
                 let aluguel = {
-                    id: IDaluguel,
+                    idAluguel: IDaluguel,
                     idCliente: idCliente,
                     idCarro: idCarro,
                     dias: dias,
@@ -514,9 +514,10 @@ function realizarAluguel() {
 
 
                 }
-
-                carro.disponivel = false;
                 alugueisAtivos.push(aluguel);
+
+                aluguel.disponivel = false;
+
                 IDaluguel++;
 
                 console.log("Aluguel cadastrado com sucesso");
@@ -539,11 +540,25 @@ function realizarAluguel() {
 function devolverCarro() {
     console.log("Devolver carro ");
     rl.question("Digite o id do aluguel: ", (IDAluguel) => {
-        for (i = 0; i < alugueis.length; i++) {
-            if (alugueisAtivos[i].id === IDAluguel) {
+        IDAluguel = Number(IDAluguel);
+
+        if (alugueisAtivos.length === 0) {
+            console.log("Nenhum aluguel ativo");
+            mostrarMenu();
+        }
+
+
+
+        for (i = 0; i < alugueisAtivos.length; i++) {
+            if (alugueisAtivos[i].idAluguel === IDAluguel) {
+
+
+
                 let aluguel = alugueisAtivos[i];
+
+
                 aluguel.disponivel = true;
-                aluguel.status = "finalizado";
+                aluguel.status = "finalizado"
                 alugueisFinalizados.push(aluguel);
                 alugueisAtivos.splice(i, 1);
                 console.log("Carro devolvido");
@@ -554,13 +569,6 @@ function devolverCarro() {
 
             }
         }
-        return null;
-
-
-
-
-
-
 
 
     })
@@ -589,7 +597,7 @@ function listarHistorico() {
 
     console.log("=== Alugueis ativos === ");
     if (alugueisAtivos.length === 0) {
-        console.log("Nenhum aluguel ativo");
+        console.log("Nenhum aluguel ativo\n");
     }
 
     else {
@@ -599,32 +607,36 @@ function listarHistorico() {
         }
 
     }
+    console.log("=====================");
+    console.log("=== Alugueis finalizados ===");
 
+    if (alugueisFinalizados.length === 0) {
+        console.log("Nenhum aluguel finalizado");
 
+    }
 
-}
-console.log("===========");
-console.log("=== Alugueis finalizados ===");
-if (alugueisFinalizados.length === 0) {
-    console.log("Nenhum aluguel finalizado");
+    else {
+        for (i = 0; i < alugueisFinalizados.length; i++) {
+            console.log(alugueisFinalizados[i]);
 
-}
+        }
 
-else {
-    for (i = 0; i < alugueisFinalizados; i++) {
-        console.log(alugueisFinalizados[i]);
 
     }
     mostrarMenu();
 
-};
+
+
+
+
+}
 
 function sair() {
     rl.close();
 }
 
-mostrarMenu();
-arrumar o disponivel aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+mostrarMenu();  
+
 
 
 
