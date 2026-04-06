@@ -4,13 +4,10 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-exports.rl = rl;
 
 let IDcarro = 1;
 
 let carros = [];
-
-
 
 function mostrarMenu() {
     console.log("\n===============");
@@ -108,15 +105,9 @@ function mostrarMenu() {
             case "0":
                 sair();
 
-
-
-
-
         }
 
-
     })
-
 
 }
 
@@ -136,9 +127,6 @@ function cadastrarCarro() {
                             return;
                         }
                     }
-
-
-
 
                     let carro = {
                         id: IDcarro,
@@ -167,7 +155,6 @@ function cadastrarCarro() {
                     mostrarMenu();
 
 
-
                 })
 
             })
@@ -175,7 +162,6 @@ function cadastrarCarro() {
         })
 
     })
-
 }
 
 function listarCarros() {
@@ -199,11 +185,8 @@ function listarCarros() {
 
         }
 
-
-
     }
     mostrarMenu();
-
 
 }
 
@@ -224,7 +207,6 @@ function listarCarrosindisponiveis() {
         }
     }
     mostrarMenu();
-
 
 }
 function buscarCarroporID() {
@@ -251,7 +233,6 @@ function buscarCarroporID() {
         }
         mostrarMenu();
 
-
     })
 
 }
@@ -273,8 +254,6 @@ function buscarCarroporPlaca() {
             }
         }
       
-
-
     })
 
 }
@@ -297,14 +276,12 @@ function estoque() {
     }
 
     mostrarMenu();
-
 }
 function encontrarCarroporID(id) {
     for (i = 0; i < carros.length; i++) {
         if (carros[i].id === id) {
             return carros[i];
         }
-
     }
     return null;
 
@@ -337,9 +314,6 @@ function atualizarCarro() {
                             return;
                         }
 
-
-
-
                         carro.modelo = novoModelo;
                         carro.placa = novaPlaca;
                         carro.ano = novoAno;
@@ -349,13 +323,9 @@ function atualizarCarro() {
                         mostrarMenu();
 
                     })
-
-
                 })
-
             })
         })
-
     })
 
 }
@@ -368,7 +338,6 @@ function removerCarro() {
             console.log("Carro não encontrado");
             mostrarMenu();
             return;
-
         }
 
         if (carro.disponivel === false) {
@@ -407,7 +376,6 @@ function cadastrarCliente() {
                 cpf = Number(cpf);
                 telefone = Number(telefone);
 
-
                 if (nome === "" || cpf === "" || telefone === "") {
                     console.log("Não foram digitados todos os dados ");
                     mostrarMenu();
@@ -431,15 +399,8 @@ function cadastrarCliente() {
                 clientes.push(cliente);
                 IDcliente++;
 
-
-
                 console.log("Cliente cadastrado com sucesso ");
                 mostrarMenu();
-
-
-
-
-
 
             })
 
@@ -481,15 +442,12 @@ function buscarClienteporID() {
 
         mostrarMenu();
     })
-
-
 }
 function buscarClienteporCPF() {
     console.log("Busca de cliente por CPF");
     rl.question("Digite o CPF do cliente: ", (CPF) => {
         CPF = Number(CPF);
         let cliente = 0;
-
 
         for (i = 0; i < clientes.length; i++) {
             if (clientes[i].cpf === CPF) {
@@ -498,7 +456,6 @@ function buscarClienteporCPF() {
                 mostrarMenu();
                 break;
 
-
             }
             else {
                 console.log("CPF não cadastrado");
@@ -506,17 +463,9 @@ function buscarClienteporCPF() {
                 return;
             }
 
-
-
         }
 
     })
-
-
-
-
-
-
 
 }
 function encontrarClienteporID(id) {
@@ -525,7 +474,6 @@ function encontrarClienteporID(id) {
         if (clientes[i].id === id) {
             return clientes[i];
         }
-
     }
     return null;
 }
@@ -557,14 +505,9 @@ function atualizarCliente() {
                     console.log("Cliente atualizado com sucesso");
                     mostrarMenu();
                     return;
-
-
                 })
             })
         })
-
-
-
 
     })
 }
@@ -583,7 +526,6 @@ function removerCliente() {
             if (clientes[i].length === id) {
                 clientes.splice(i, 1);
 
-
             }
 
         }
@@ -591,12 +533,7 @@ function removerCliente() {
         mostrarMenu();
         return;
 
-
-
-
     })
-
-
 
 }
 
@@ -612,14 +549,10 @@ let status = "ativo";
 
 function realizarAluguel() {
 
-
-
     console.log("Realizar aluguel ");
     rl.question("Digite o id do cliente : ", (idCliente) => {
         rl.question("Digite o id do carro : ", (idCarro) => {
             rl.question("Digite o número de dias do aluguel : ", (dias) => {
-
-
 
                 idCliente = Number(idCliente);
                 idCarro = Number(idCarro);
@@ -629,10 +562,6 @@ function realizarAluguel() {
                 let cliente = encontrarClienteporID(idCliente);
                 let total = 0;
                 total = dias * carro.preco;
-
-
-
-
 
                 if (idCliente === "" || cliente === null) {
                     console.log("Cliente não encontrado");
@@ -652,8 +581,6 @@ function realizarAluguel() {
                     return;
                 }
 
-
-
                 let aluguel = {
                     idAluguel: IDaluguel,
                     idCliente: idCliente,
@@ -662,7 +589,6 @@ function realizarAluguel() {
                     total: total,
                     disponivel: carro.disponivel,
                     status: status
-
 
                 }
                 aluguel.total = Number(total);
@@ -676,17 +602,11 @@ function realizarAluguel() {
                 console.log("Aluguel cadastrado com sucesso");
                 mostrarMenu();
 
-
-
-
-
-
             })
 
         })
 
     })
-
 
 }
 
@@ -700,16 +620,12 @@ function devolverCarro() {
             mostrarMenu();
         }
 
-
-
         for (i = 0; i < alugueisAtivos.length; i++) {
 
             if (alugueisAtivos[i].idAluguel === IDAluguel) {
 
-
                 let aluguel = alugueisAtivos[i];
                 let carro = encontrarCarroporID(aluguel.idCarro);
-
 
                 aluguel.disponivel = true;
                 carro.disponivel = true;
@@ -719,15 +635,10 @@ function devolverCarro() {
                 console.log("Carro devolvido");
                 mostrarMenu();
 
-
-
-
             }
         }
 
-
     })
-
 
 }
 
@@ -738,7 +649,6 @@ function listarAlugueisativos() {
         console.log("Nenhum aluguel ativo");
         mostrarMenu();
         return;
-
 
     }
     for (i = 0; i < alugueisAtivos.length; i++) {
@@ -781,14 +691,8 @@ function listarHistorico() {
             console.log(alugueisFinalizados[i]);
 
         }
-
-
     }
     mostrarMenu();
-
-
-
-
 
 }
 function relatorioGeral() {
@@ -807,8 +711,6 @@ function relatorioGeral() {
         totalb = Number(totalb);
         totalFechado = totalb + totalFechado;
 
-
-
     }
     console.log("Faturamento: ", totalFechado);
     mostrarMenu();
@@ -818,6 +720,7 @@ function relatorioGeral() {
 function sair() {
     rl.close();
 }
+
 
 mostrarMenu();
 
