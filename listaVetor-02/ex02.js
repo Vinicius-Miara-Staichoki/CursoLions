@@ -7,12 +7,13 @@ for(i=0;i<a.length;i++){
             a.splice(j,1);
             j--
             
-            console.log(a);
+            
 
         }
     }
    
 }
+console.log(a);
 
 
 
