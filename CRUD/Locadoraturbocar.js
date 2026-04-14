@@ -255,11 +255,6 @@ function buscarCarroporPlaca() {
         }
 
     })
-
-}
-function estoque() {
-    console.log("Estoque");
-
     console.log("Total de carros: ", carros.length);
     console.log("===== Carros disponíveis ====");
     for (i = 0; i < carros.length; i++) {
@@ -588,7 +583,7 @@ function realizarAluguel() {
                     dias: dias,
                     total: total,
                     disponivel: carro.disponivel,
-                    status: status
+                    status:status  
 
                 }
                 aluguel.total = Number(total);
